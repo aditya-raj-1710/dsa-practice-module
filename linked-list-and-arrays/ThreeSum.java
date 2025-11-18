@@ -30,7 +30,7 @@ class ThreeSumSolution {
         int n=  nums.length;
         for(int i=0;i<n;i++){
             if(i>0 && nums[i] == nums[i-1])
-                continue;;
+                continue;
 
             int left=i+1;
             int right = n-1;
