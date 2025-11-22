@@ -35,9 +35,14 @@ class NMeetingInARoomSolution {
 
         return counter;
     }
-    static class MeetingComparator implements Comparator<int []>{
+    /*static class MeetingComparator implements Comparator<int []>{
         public int compare(int[] a, int[] b){
             return Integer.compare(a[1],b[1]);
         }
+    }*/
+}
+class MeetingComparator implements Comparator<int []>{
+    public int compare(int[] a, int[] b){
+        return Integer.compare(a[1],b[1]);
     }
 }
