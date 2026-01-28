@@ -93,6 +93,7 @@ class LRUCacheSolution {
 class Node{
     int value;
     int key;
+    int cnt;
     Node previous;
     Node next;
 
@@ -105,6 +106,7 @@ class Node{
     Node(int key, int value){
         this.key = key;
         this.value=value;
+        this.cnt=1;
         this.next=null;
         this.previous=null;
     }
