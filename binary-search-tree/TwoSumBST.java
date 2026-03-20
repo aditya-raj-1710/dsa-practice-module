@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 public class TwoSumBST {
     public static void main(String[] args) {
@@ -71,34 +70,5 @@ class TwoSumBSTSolution {
         inOrderTraversal(node.left,list);
         list.add(node.data);
         inOrderTraversal(node.right,list);
-    }
-}
-
-class BSTIterator{
-    private Stack<TreeNode> stack;
-    private boolean reverse;
-
-    public BSTIterator(TreeNode root, boolean isReverse){
-        stack = new Stack<>();
-        reverse = isReverse;
-        pushAll(root);
-    }
-
-    private void pushAll(TreeNode root){
-        while(root != null){
-            stack.push(root);
-            root = reverse ? root.right: root.left;
-        }
-    }
-
-    public boolean hasNext(){
-        return!stack.isEmpty();
-    }
-
-    public int next(){
-        TreeNode node = stack.pop();
-        if(!reverse) pushAll(node.right);
-        else pushAll(node.left);
-        return node.data;
     }
 }
