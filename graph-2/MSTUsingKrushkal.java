@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class MSTUsingPrimAndKrushKal {
+public class MSTUsingKrushkal {
     public static void main(String[] args) {
         int V = 4;
         List<List<Integer>> edges = Arrays.asList(
@@ -25,13 +25,7 @@ public class MSTUsingPrimAndKrushKal {
         }
 
         // Creating instance of Solution class
-        MSTUsingPrimAndKrushKalSolution sol = new MSTUsingPrimAndKrushKalSolution();
-
-        /* Function call to get the sum
-        of weights of edges in MST */
-        int ans = sol.spanningTreePrim(V, adj);
-
-        System.out.println("The sum of weights of edges in MST is: " + ans);
+        MSTUsingKrushkalSolution sol = new MSTUsingKrushkalSolution();
 
         int ans2 = sol.spanningTreeKrushkal(V, adj);
 
@@ -39,42 +33,7 @@ public class MSTUsingPrimAndKrushKal {
     }
 }
 
-class MSTUsingPrimAndKrushKalSolution {
-    public int spanningTreePrim(int V, List<List<List<Integer>>> adj) {
-        boolean[] visited = new boolean[V];
-
-        int sum =0;
-
-        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparing(a -> a[0]));
-
-        pq.add(new int[]{0,0});
-
-        while(!pq.isEmpty()){
-            int[] p = pq.poll();
-
-            int node = p[1];
-            int wt = p[0];
-
-            if(visited[node]){
-                continue;
-            }
-            visited[node] = true;
-
-            sum += wt;
-
-            for(List<Integer> it : adj.get(node)){
-                int adjNode = it.get(0);
-                int adjWt = it.get(1);
-
-                if(!visited[adjNode]){
-                    pq.add(new int[]{adjWt,adjNode});
-                }
-            }
-        }
-
-        return sum;
-    }
-
+class MSTUsingKrushkalSolution {
     public int spanningTreeKrushkal(int V, List<List<List<Integer>>> adj) {
         List<int[]> edges = new ArrayList<>();
 
