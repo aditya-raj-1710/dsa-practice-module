@@ -7,10 +7,33 @@ public class MatrixMultiplication {
         MatrixMultiplicationSolution sol = new MatrixMultiplicationSolution();
 
         System.out.println("The minimum number of operations is " + sol.matrixMultiplication(arr));
+        System.out.println("The minimum number of operations is " + sol.matrixMultiplication2(arr));
     }
 }
 
 class MatrixMultiplicationSolution {
+
+    /// Tabulation
+    public int matrixMultiplication2(int[] nums) {
+        int n = nums.length;
+        int[][] dp = new int[n][n];
+        for(int[] it: dp) Arrays.fill(it, Integer.MAX_VALUE);
+
+        for(int i=1;i<n;i++) dp[i][i] = 0;
+
+        for(int length = 2; length<n;length++){
+            for(int i=1;i <= n-length;i++){
+                int j = i+length-1;
+                for(int k=i;k<j;k++){
+                    int steps = nums[i-1]*nums[k]*nums[j]
+                            +dp[i][k] + dp[k+1][j];
+                    if(steps < dp[i][j]) dp[i][j] = steps;
+                }
+            }
+        }
+        return dp[1][n-1];
+    }
+
 
     /// Recursion + memoization
     public int matrixMultiplication(int[] nums) {
