@@ -3,9 +3,10 @@ import java.util.*;
 public class DuplicateNumber {
     public static void main(String[] args) {
         DuplicateSolution solution = new DuplicateSolution();
-        int[] nums = {3,5,6,1,2,2,7};
+        int[] nums = {3,5,6,1,2,2,4};
         int duplicateNum = solution.findDuplicate(nums);
         System.out.println(duplicateNum);
+        System.out.println(solution.findDuplicateOptimal(nums));
     }
 }
 
@@ -23,4 +24,25 @@ class DuplicateSolution {
         }
         return 0;
     }
+
+    /// Optimal - floyd's tortoise & hare
+    public int findDuplicateOptimal(int[] nums) {
+        int slow = nums[0], fast = nums[0];
+
+        while(true){
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+
+            if(slow == fast) break;
+        }
+
+        fast = nums[0];
+
+        while(slow != fast){
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        return slow;
+    }
+
 }
